@@ -127,7 +127,7 @@ def create_lmdb_train(datadir, fns, name, matkey,
 def create_icvl_train(datadir,fns):
     print('create icvl64_31...')
     fnames = fns[:120]
-    newdir = './data/ICVL64_31'
+    newdir = '/content/datasets/'
 
     create_lmdb_train(datadir, fnames, newdir, 'rad',  # your own dataset address
         crop_sizes=(1024, 1024),
@@ -137,10 +137,10 @@ def create_icvl_train(datadir,fns):
         load=h5py.File, augment=True,)
 
 if __name__ == '__main__':
-    rootdir = '/data/Data/ICVL/ALL/'
+    rootdir = '/content/datasets/'
     allfns = os.listdir(rootdir)
 
-    valfns = loadmat('./data/valfns.mat')['fns']
+    valfns = loadmat('/content/datasets/indian_pines.mat')['indian_pines']
     valfns = [x.strip() for x in valfns]
     trainfns = [x for x in allfns if all(y not in x for y in valfns)]
     
