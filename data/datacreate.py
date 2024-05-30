@@ -36,7 +36,7 @@ def create_icvl_val(datadir,fns):
     case = ['icvl_stripe_1','icvl_stripe_2','icvl_stripe_3','icvl_stripe_4']
     transform = [AddStripeNoiseH(),AddStripeNoiseW(),AddMixedNoiseH(),AddMixedNoiseW()]
 
-    newpath = './data/'
+    newpath = '/content/drive/MyDrive/ICVL_MAT_DATASET'
     for i in range(len(case)):
         newdir = join(newpath,case[i])
         create_dataset_valid(datadir,fnames, newdir,'rad', func=prefunc,
@@ -127,7 +127,7 @@ def create_lmdb_train(datadir, fns, name, matkey,
 def create_icvl_train(datadir,fns):
     print('create icvl64_31...')
     fnames = fns[:120]
-    newdir = '/content/datasets/'
+    newdir = '/content/drive/MyDrive/ICVL_MAT_DATASET'
 
     create_lmdb_train(datadir, fnames, newdir, 'rad',  # your own dataset address
         crop_sizes=(1024, 1024),
@@ -137,10 +137,10 @@ def create_icvl_train(datadir,fns):
         load=h5py.File, augment=True,)
 
 if __name__ == '__main__':
-    rootdir = '/content/datasets/'
+    rootdir = '/content/drive/MyDrive/ICVL_MAT_DATASET'
     allfns = os.listdir(rootdir)
 
-    valfns = loadmat('/content/datasets/indian_pines.mat')['indian_pines']
+    valfns = loadmat('./data/valfns')['fns']
     valfns = [x.strip() for x in valfns]
     trainfns = [x for x in allfns if all(y not in x for y in valfns)]
     
