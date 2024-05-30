@@ -140,7 +140,7 @@ if __name__ == '__main__':
     rootdir = '/content/drive/MyDrive/ICVL_MAT_DATASET'
     allfns = os.listdir(rootdir)
 
-    valfns = loadmat('./data/valfns')['fns']
+    valfns = loadmat('/content/PHID/data/valfns')['fns']
     valfns = [x.strip() for x in valfns]
     trainfns = [x for x in allfns if all(y not in x for y in valfns)]
     
